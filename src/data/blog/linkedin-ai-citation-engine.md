@@ -24,19 +24,11 @@ When someone asks ChatGPT about tools in your category, does your brand show up?
 
 Not your website. Not your blog.
 
-Just your name.
+A person.
 
-Because that's what matters now. AI isn't just indexing pages anymore. It's pulling ideas from people. And a lot of those ideas are coming from LinkedIn.
+Because that’s what’s changing.
 
-Buyers are starting inside AI tools like ChatGPT, Perplexity, and Google's AI search. These systems don't show ten blue links first. They give answers.
-
-What used to happen across multiple steps is now compressed.
-
-Someone asks what tools exist. Then they ask which ones are better. Then they ask what they should choose.
-
-All of this happens inside AI.
-
-By the time they click a website, they've already made up their mind.
+AI systems are starting to pull answers from LinkedIn posts and profiles, especially when the query is professional or B2B.
 
 ## Where these answers are coming from
 
