@@ -2,7 +2,7 @@
 author: Arun Nath J
 pubDatetime: 2026-04-30T00:00:00Z
 modDatetime: 2026-04-30T00:00:00Z
-title: Your LinkedIn Posts Might Be Influencing AI Answers
+title: LinkedIn Profile Citations in AI Answers
 slug: linkedin-ai-citation
 featured: true
 draft: false
@@ -11,7 +11,6 @@ tags:
   - geo
   - linkedin
   - ai-search
-  - generative-engine-optimization
 description: When someone asks ChatGPT about tools in your category, does your brand show up? LinkedIn is now the second most cited domain in AI answers. Here's what that means for visibility.
 ---
 
