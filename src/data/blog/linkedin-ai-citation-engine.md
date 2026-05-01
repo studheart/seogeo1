@@ -41,15 +41,13 @@ By the time they click a website, they've already made up their mind.
 
 ## Where these answers are coming from
 
-This is where it gets interesting.
-
 A study analyzing more than 325,000 AI prompts found that LinkedIn appears in about 11 percent of AI-generated responses, making it the second most cited domain after Reddit. ChatGPT alone cites LinkedIn in roughly 14.3 percent of responses ([Semrush, 2026](https://www.semrush.com/blog/linkedin-ai-visibility-study/)).
 
 Another analysis tracking 1.4 million citations showed LinkedIn jumping from rank 11 to rank 5 in a single quarter and becoming the number one source for professional queries ([Profound, 2026](https://www.tryprofound.com/blog/linkedin-is-the-most-cited-domain-for-professional-queries-in-ai-search)).
 
-That's not a small shift. That's infrastructure changing.
+That's not a small shift. 
 
-## The real shift most companies are missing
+## The real shift
 
 It's not company pages that are driving this.
 
@@ -71,29 +69,13 @@ Content that works tends to be educational. Around 54 to 64 percent of cited con
 
 So it's not about going viral. It's about being clear, useful, and consistent.
 
-## The hidden problem
+If your team isn’t active on LinkedIn, you’re not just missing visibility.
 
-There's also a risk most people don't see.
+You’re missing presence inside the answer itself.
 
-AI can use your content without crediting you.
+Because someone else is already explaining your category. Their posts, their breakdowns, their opinions.
 
-When brand context is missing, attribution drops from about 53 percent to 10.6 percent ([Seer Interactive](https://www.seerinteractive.com/insights/llm-ghost-citations-why-your-content-is-working-and-your-brand-isnt)). That means your ideas can shape answers while your brand stays invisible.
-
-## This is where SEO starts to change
-
-Traditional SEO is about ranking pages and getting clicks.
-
-This is different.
-
-Now it's about influencing the answer itself. Before someone visits your website, they already have a perspective. And that perspective is shaped by what AI tells them.
-
-## What this means in practice
-
-If your team isn't creating content on LinkedIn, you're not just missing reach.
-
-You're missing representation.
-
-Because someone else is already explaining your category. And AI is learning from them.
+And that’s what AI is picking up and repeating.
 
 ---
 
@@ -102,4 +84,3 @@ Because someone else is already explaining your category. And AI is learning fro
 - [Semrush AI Visibility Study](https://www.semrush.com/blog/linkedin-ai-visibility-study/)
 - [Profound AI Citation Analysis](https://www.tryprofound.com/blog/linkedin-is-the-most-cited-domain-for-professional-queries-in-ai-search)
 - [LinkedIn AI Visibility Guide](https://www.linkedin.com/business/marketing/blog/content-marketing/how-to-leverage-linkedin-for-ai-visibility-in-2026)
-- [Ghost Citation Study – Seer Interactive](https://www.seerinteractive.com/insights/llm-ghost-citations-why-your-content-is-working-and-your-brand-isnt)
