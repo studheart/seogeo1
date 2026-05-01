@@ -29,15 +29,7 @@ Just your name.
 
 Because that's what matters now. AI isn't just indexing pages anymore. It's pulling ideas from people. And a lot of those ideas are coming from LinkedIn.
 
-## The old SEO playbook is incomplete
-
-Earlier, it was simple. You wrote content, ranked on Google, and got traffic.
-
-That still works.
-
-But buyers aren't starting there anymore. They're starting inside AI tools like ChatGPT, Perplexity, and Google's AI search. These systems don't show ten blue links first. They give answers.
-
-## The funnel didn't disappear. It moved
+Buyers are starting inside AI tools like ChatGPT, Perplexity, and Google's AI search. These systems don't show ten blue links first. They give answers.
 
 What used to happen across multiple steps is now compressed.
 
@@ -102,14 +94,6 @@ If your team isn't creating content on LinkedIn, you're not just missing reach.
 You're missing representation.
 
 Because someone else is already explaining your category. And AI is learning from them.
-
-## Final thought
-
-The question isn't whether LinkedIn is important.
-
-It's whether you're showing up when AI talks about your space.
-
-Because if you're not, someone else is doing the talking for you.
 
 ---
 
