@@ -1,7 +1,7 @@
 ---
 author: Arun Nath J
-pubDatetime: 2026-05-01T08:00:00Z
-modDatetime: 2026-05-01T08:00:00Z
+pubDatetime: 2026-04-30T00:00:00Z
+modDatetime: 2026-04-30T00:00:00Z
 title: LinkedIn Is Quietly Becoming an AI Citation Engine
 slug: linkedin-ai-citation-engine
 featured: true
