@@ -12,7 +12,6 @@ tags:
   - linkedin
   - ai-search
   - generative-engine-optimization
-ogImage: "@/assets/images/linkedin-ai-citation.png"
 description: When someone asks ChatGPT about tools in your category, does your brand show up? LinkedIn is now the second most cited domain in AI answers. Here's what that means for visibility.
 ---
 
