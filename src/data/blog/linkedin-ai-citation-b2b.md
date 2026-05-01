@@ -12,10 +12,7 @@ tags:
   - LinkedIn
   - B2B
 description: LinkedIn is becoming a major AI citation source across ChatGPT, Perplexity, and Google AI. Here’s what it means for B2B SEO.
-ogImage: ../../assets/images/linkedin-ai-citation.png
 ---
-
-![AI citation engine concept showing LinkedIn content feeding into AI systems](@/assets/images/linkedin-ai-citation.png)
 
 ## Let me ask you something
 
@@ -137,8 +134,6 @@ GEO:
 ---
 
 ## Final thought
-
-The question is:
 
 **Are you showing up in AI answers at all?**
 
