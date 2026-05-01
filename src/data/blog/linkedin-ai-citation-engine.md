@@ -2,8 +2,8 @@
 author: Arun Nath J
 pubDatetime: 2026-04-30T00:00:00Z
 modDatetime: 2026-04-30T00:00:00Z
-title: LinkedIn Is Quietly Becoming an AI Citation Engine
-slug: linkedin-ai-citation-engine
+title: Your LinkedIn Posts Might Be Influencing AI Answers
+slug: linkedin-ai-citation
 featured: true
 draft: false
 tags:
