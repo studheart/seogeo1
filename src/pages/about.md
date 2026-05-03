@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About SEO GEO | Arun Nath J"
+title: "About SEO GEO - Arun Nath J"
 description: "SEO GEO is a blog by Arun Nath J, an SEO expert sharing real-world strategies for SEO, GEO, and AI-driven search growth."
 ---
 
