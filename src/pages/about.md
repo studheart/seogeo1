@@ -3,7 +3,7 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-SEO GEO is a practical resource for modern search - where traditional SEO meets AI-driven discovery.
+SEO GEO is a practical resource for search (for both AI Search & Google Search).
 
 Learn how to rank on Google, get cited in AI systems like ChatGPT and Google Gemini, and build visibility in evolving search experiences such as AI Overviews.
 
@@ -11,7 +11,7 @@ This site focuses on real-world SEO frameworks, AI search optimization (AEO / GE
 
 ### About Me
 
-I’m **Arun Nath J**, an SEO and organic growth specialist with 10+ years of experience driving scalable growth across B2B, telecom, healthcare, and service industries.
+I’m **Arun Nath J**, an SEO and organic growth specialist with 12+ years of experience driving scalable growth across B2B, telecom, healthcare, and service industries.
 
 My expertise includes:
 
@@ -44,9 +44,9 @@ I actively work on:
 
 SEO GEO is where I share:
 
-- Practical SEO frameworks 
+- My thoughts on SEO frameworks 
 - AI search optimization strategies  
 - Content systems for building topical authority  
-- Insights into ranking across both traditional SERPs and AI systems  
+- Insights into ranking across both SERPs and AI systems  
 
 **By Arun Nath J.**
