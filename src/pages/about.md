@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "About SEO GEO | Arun Nath J"
+description: "SEO GEO is a blog by Arun Nath J, an SEO expert sharing real-world strategies for SEO, GEO, and AI-driven search growth."
 ---
 
 SEO GEO is a practical resource for search (for both AI Search & Google Search).
