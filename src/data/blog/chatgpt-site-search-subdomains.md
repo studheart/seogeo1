@@ -68,9 +68,9 @@ So the question isn't just whether a page ranks.
 
 It's whether the page gets **retrieved when the question is asked**.
 
-## I saw this happen with a client
+## I saw this happen with a website
 
-The interesting part came from a real client example.
+The interesting part came from a real website example.
 
 ChatGPT kept returning a page from a subdomain when answering questions about the main website.
 
@@ -518,7 +518,4 @@ And I think that's worth testing.
 
 ## References
 
-- [OpenAI: Searching the web with ChatGPT](https://help.openai.com/en/articles/9237897-chatgpt-search)
-- [OpenAI: Advertiser Guidance for Allowing OpenAI Web Crawlers](https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers)
-- [OpenAI: Offline web search for ChatGPT workspaces](https://help.openai.com/en/articles/20001203-offline-web-search-for-chatgpt-workspaces)
-- [OpenAI: Introducing ChatGPT Search](https://openai.com/index/introducing-chatgpt-search/)
+- <a href="https://help.openai.com/en/articles/9237897-chatgpt-search" rel="nofollow">OpenAI: Searching the web with ChatGPT</a>
