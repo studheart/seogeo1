@@ -14,7 +14,10 @@ const description =
 
     <meta name="description" content={description} />
 
-    <link rel="canonical" href="https://seogeo.in/tools/ai-search-query-generator" />
+    <link
+      rel="canonical"
+      href="https://seogeo.in/tools/ai-search-query-generator"
+    />
 
     <style>
       :root {
@@ -60,7 +63,7 @@ const description =
       .header-inner {
         max-width: 900px;
         margin: 0 auto;
-        padding: 1.25rem 1.25rem;
+        padding: 1.25rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -283,7 +286,8 @@ const description =
         font-size: 0.75rem;
       }
 
-      .copy-button.copied {
+      .copy-button.copied,
+      #copy-all.copied {
         border-color: var(--success);
         color: var(--success);
       }
@@ -313,11 +317,6 @@ const description =
       }
 
       .info-section p {
-        color: var(--muted);
-      }
-
-      .info-section ul {
-        padding-left: 1.25rem;
         color: var(--muted);
       }
 
@@ -454,7 +453,7 @@ const description =
         </div>
 
         <div class="button-row">
-          <button id="generate" class="primary-button">
+          <button id="generate" class="primary-button" type="button">
             Generate Queries
           </button>
 
@@ -481,11 +480,11 @@ const description =
         <div id="results-container"></div>
 
         <div class="button-row">
-          <button id="copy-all">
+          <button id="copy-all" type="button">
             Copy All Queries
           </button>
 
-          <button id="regenerate" class="primary-button">
+          <button id="regenerate" class="primary-button" type="button">
             Generate Again
           </button>
         </div>
@@ -559,7 +558,20 @@ const description =
     </footer>
 
     <script>
-      const queryTemplates = {
+      type QueryCategory =
+        | "informational"
+        | "problem"
+        | "commercial"
+        | "comparison"
+        | "transactional"
+        | "ai";
+
+      type GeneratedQuery = {
+        category: QueryCategory;
+        query: string;
+      };
+
+      const queryTemplates: Record<QueryCategory, string[]> = {
         informational: [
           "What is {topic}?",
           "What does {topic} mean?",
@@ -669,7 +681,7 @@ const description =
         ]
       };
 
-      const categoryLabels = {
+      const categoryLabels: Record<QueryCategory, string> = {
         informational: "Informational",
         problem: "Problem Solving",
         commercial: "Commercial",
@@ -678,33 +690,64 @@ const description =
         ai: "AI Search Specific"
       };
 
-      const topicInput = document.getElementById("topic");
-      const intentSelect = document.getElementById("intent");
-      const quantitySelect = document.getElementById("quantity");
+      const topicInput = document.getElementById(
+        "topic"
+      ) as HTMLInputElement;
 
-      const generateButton = document.getElementById("generate");
-      const clearButton = document.getElementById("clear");
-      const copyAllButton = document.getElementById("copy-all");
-      const regenerateButton = document.getElementById("regenerate");
+      const intentSelect = document.getElementById(
+        "intent"
+      ) as HTMLSelectElement;
 
-      const resultsSection = document.getElementById("results");
-      const resultsContainer = document.getElementById("results-container");
-      const resultCount = document.getElementById("result-count");
-      const emptyState = document.getElementById("empty-state");
+      const quantitySelect = document.getElementById(
+        "quantity"
+      ) as HTMLSelectElement;
 
-      let generatedQueries = [];
+      const generateButton = document.getElementById(
+        "generate"
+      ) as HTMLButtonElement;
 
-      function cleanTopic(topic) {
-        return topic
-          .trim()
-          .replace(/\s+/g, " ");
+      const clearButton = document.getElementById(
+        "clear"
+      ) as HTMLButtonElement;
+
+      const copyAllButton = document.getElementById(
+        "copy-all"
+      ) as HTMLButtonElement;
+
+      const regenerateButton = document.getElementById(
+        "regenerate"
+      ) as HTMLButtonElement;
+
+      const resultsSection = document.getElementById(
+        "results"
+      ) as HTMLElement;
+
+      const resultsContainer = document.getElementById(
+        "results-container"
+      ) as HTMLElement;
+
+      const resultCount = document.getElementById(
+        "result-count"
+      ) as HTMLElement;
+
+      const emptyState = document.getElementById(
+        "empty-state"
+      ) as HTMLElement;
+
+      let generatedQueries: GeneratedQuery[] = [];
+
+      function cleanTopic(topic: string): string {
+        return topic.trim().replace(/\s+/g, " ");
       }
 
-      function createQuery(template, topic) {
+      function createQuery(
+        template: string,
+        topic: string
+      ): string {
         return template.replaceAll("{topic}", topic);
       }
 
-      function shuffle(array) {
+      function shuffle<T>(array: T[]): T[] {
         const copy = [...array];
 
         for (let i = copy.length - 1; i > 0; i--) {
@@ -715,15 +758,15 @@ const description =
         return copy;
       }
 
-      function getCategories(intent) {
+      function getCategories(intent: string): QueryCategory[] {
         if (intent === "all") {
-          return Object.keys(queryTemplates);
+          return Object.keys(queryTemplates) as QueryCategory[];
         }
 
-        return [intent];
+        return [intent as QueryCategory];
       }
 
-      function generateQueries() {
+      function generateQueries(): void {
         const topic = cleanTopic(topicInput.value);
 
         if (!topic) {
@@ -740,22 +783,23 @@ const description =
         const categories = getCategories(intent);
 
         generatedQueries = [];
-
         resultsContainer.innerHTML = "";
 
-        categories.forEach(category => {
+        categories.forEach((category: QueryCategory) => {
           const templates = shuffle(queryTemplates[category]);
           const selected = templates.slice(0, quantity);
 
-          const queries = selected.map(template =>
+          const queries = selected.map((template: string) =>
             createQuery(template, topic)
           );
 
           generatedQueries.push(
-            ...queries.map(query => ({
-              category,
-              query
-            }))
+            ...queries.map(
+              (query: string): GeneratedQuery => ({
+                category,
+                query
+              })
+            )
           );
 
           const categorySection = document.createElement("div");
@@ -768,7 +812,7 @@ const description =
           const list = document.createElement("ul");
           list.className = "query-list";
 
-          queries.forEach(query => {
+          queries.forEach((query: string) => {
             const item = document.createElement("li");
             item.className = "query-item";
 
@@ -776,26 +820,32 @@ const description =
             text.className = "query-text";
             text.textContent = query;
 
-            const copyButton = document.createElement("button");
+            const copyButton =
+              document.createElement("button");
+
             copyButton.className = "copy-button";
             copyButton.type = "button";
             copyButton.textContent = "Copy";
+
             copyButton.setAttribute(
               "aria-label",
               `Copy query: ${query}`
             );
 
-            copyButton.addEventListener("click", async () => {
-              await copyText(query);
+            copyButton.addEventListener(
+              "click",
+              async (): Promise<void> => {
+                await copyText(query);
 
-              copyButton.textContent = "Copied";
-              copyButton.classList.add("copied");
+                copyButton.textContent = "Copied";
+                copyButton.classList.add("copied");
 
-              setTimeout(() => {
-                copyButton.textContent = "Copy";
-                copyButton.classList.remove("copied");
-              }, 1500);
-            });
+                window.setTimeout(() => {
+                  copyButton.textContent = "Copy";
+                  copyButton.classList.remove("copied");
+                }, 1500);
+              }
+            );
 
             item.appendChild(text);
             item.appendChild(copyButton);
@@ -819,11 +869,12 @@ const description =
         });
       }
 
-      async function copyText(text) {
+      async function copyText(text: string): Promise<void> {
         try {
           await navigator.clipboard.writeText(text);
         } catch {
-          const textarea = document.createElement("textarea");
+          const textarea =
+            document.createElement("textarea");
 
           textarea.value = text;
           textarea.style.position = "fixed";
@@ -832,35 +883,44 @@ const description =
           document.body.appendChild(textarea);
 
           textarea.select();
+
           document.execCommand("copy");
 
           textarea.remove();
         }
       }
 
-      async function copyAll() {
+      async function copyAll(): Promise<void> {
         if (!generatedQueries.length) {
           return;
         }
 
         const text = generatedQueries
-          .map(item => item.query)
+          .map(
+            (item: GeneratedQuery): string =>
+              item.query
+          )
           .join("\n");
 
         await copyText(text);
 
-        const originalText = copyAllButton.textContent;
+        const originalText =
+          copyAllButton.textContent;
 
-        copyAllButton.textContent = "Copied All Queries";
+        copyAllButton.textContent =
+          "Copied All Queries";
+
         copyAllButton.classList.add("copied");
 
-        setTimeout(() => {
-          copyAllButton.textContent = originalText;
+        window.setTimeout(() => {
+          copyAllButton.textContent =
+            originalText || "Copy All Queries";
+
           copyAllButton.classList.remove("copied");
         }, 1500);
       }
 
-      function clearTool() {
+      function clearTool(): void {
         topicInput.value = "";
         intentSelect.value = "all";
         quantitySelect.value = "8";
@@ -874,16 +934,34 @@ const description =
         topicInput.focus();
       }
 
-      generateButton.addEventListener("click", generateQueries);
-      regenerateButton.addEventListener("click", generateQueries);
-      copyAllButton.addEventListener("click", copyAll);
-      clearButton.addEventListener("click", clearTool);
+      generateButton.addEventListener(
+        "click",
+        generateQueries
+      );
 
-      topicInput.addEventListener("keydown", event => {
-        if (event.key === "Enter") {
-          generateQueries();
+      regenerateButton.addEventListener(
+        "click",
+        generateQueries
+      );
+
+      copyAllButton.addEventListener(
+        "click",
+        copyAll
+      );
+
+      clearButton.addEventListener(
+        "click",
+        clearTool
+      );
+
+      topicInput.addEventListener(
+        "keydown",
+        (event: KeyboardEvent) => {
+          if (event.key === "Enter") {
+            generateQueries();
+          }
         }
-      });
+      );
     </script>
   </body>
 </html>
