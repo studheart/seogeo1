@@ -1,21 +1,889 @@
 ---
 const title = "AI Search Query Generator";
+const description =
+  "Generate realistic AI search queries from any keyword or topic for ChatGPT, Google AI search, Perplexity, and other AI-powered search experiences.";
 ---
 
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <title>{title} | SEO GEO</title>
-    <meta
-      name="description"
-      content="Generate realistic AI search queries from any keyword or topic."
-    />
+
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href="https://seogeo.in/tools/ai-search-query-generator" />
+
+    <style>
+      :root {
+        color-scheme: light;
+        --background: #ffffff;
+        --foreground: #171717;
+        --muted: #666666;
+        --border: #e5e5e5;
+        --accent: #2563eb;
+        --accent-hover: #1d4ed8;
+        --card: #fafafa;
+        --success: #15803d;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--background);
+        color: var(--foreground);
+        font-family:
+          "Google Sans Code",
+          "Courier New",
+          monospace;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        width: 100%;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1.25rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        text-decoration: none;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .back-link {
+        font-size: 0.875rem;
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--foreground);
+      }
+
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 1.25rem 5rem;
+      }
+
+      .hero {
+        margin-bottom: 2.5rem;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 0.75rem;
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      .hero-description {
+        max-width: 720px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .tool-card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        background: var(--card);
+      }
+
+      .field {
+        margin-bottom: 1.25rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .field-description {
+        margin: -0.25rem 0 0.65rem;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      input,
+      select {
+        width: 100%;
+        min-height: 48px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.75rem 0.9rem;
+        background: var(--background);
+        color: var(--foreground);
+        font: inherit;
+        font-size: 0.95rem;
+        outline: none;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      button {
+        min-height: 44px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.65rem 1rem;
+        background: var(--background);
+        color: var(--foreground);
+        font: inherit;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          background 0.15s ease,
+          border-color 0.15s ease,
+          transform 0.15s ease;
+      }
+
+      button:hover {
+        border-color: #c7c7c7;
+        transform: translateY(-1px);
+      }
+
+      .primary-button {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: white;
+      }
+
+      .primary-button:hover {
+        border-color: var(--accent-hover);
+        background: var(--accent-hover);
+      }
+
+      .results-section {
+        display: none;
+        margin-top: 2rem;
+      }
+
+      .results-section.visible {
+        display: block;
+      }
+
+      .results-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .results-header h2 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+
+      .result-count {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .category {
+        margin-bottom: 1.5rem;
+      }
+
+      .category-title {
+        margin: 0 0 0.65rem;
+        font-size: 0.9rem;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .query-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--background);
+      }
+
+      .query-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .query-item:last-child {
+        border-bottom: 0;
+      }
+
+      .query-text {
+        flex: 1;
+        min-width: 0;
+        font-size: 0.9rem;
+        overflow-wrap: anywhere;
+      }
+
+      .copy-button {
+        flex-shrink: 0;
+        min-height: 34px;
+        padding: 0.4rem 0.65rem;
+        font-size: 0.75rem;
+      }
+
+      .copy-button.copied {
+        border-color: var(--success);
+        color: var(--success);
+      }
+
+      .empty-state {
+        display: none;
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .info-section {
+        margin-top: 4rem;
+      }
+
+      .info-section h2 {
+        margin: 0 0 1rem;
+        font-size: 1.6rem;
+      }
+
+      .info-section h3 {
+        margin: 2rem 0 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .info-section p {
+        color: var(--muted);
+      }
+
+      .info-section ul {
+        padding-left: 1.25rem;
+        color: var(--muted);
+      }
+
+      .tip-box {
+        margin-top: 1.5rem;
+        padding: 1rem 1.1rem;
+        border-left: 3px solid var(--accent);
+        background: var(--card);
+      }
+
+      .tip-box p {
+        margin: 0;
+      }
+
+      footer {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1.5rem 1.25rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 640px) {
+        main {
+          padding-top: 2rem;
+        }
+
+        .tool-card {
+          padding: 1rem;
+        }
+
+        .controls {
+          grid-template-columns: 1fr;
+        }
+
+        .query-item {
+          align-items: flex-start;
+        }
+
+        .copy-button {
+          margin-top: 0.05rem;
+        }
+
+        .results-header {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: dark;
+          --background: #171717;
+          --foreground: #f5f5f5;
+          --muted: #a3a3a3;
+          --border: #333333;
+          --accent: #60a5fa;
+          --accent-hover: #93c5fd;
+          --card: #1f1f1f;
+          --success: #4ade80;
+        }
+
+        .primary-button {
+          color: #111827;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <h1>{title}</h1>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="/">SEO GEO</a>
+        <a class="back-link" href="/posts">← Back to posts</a>
+      </div>
+    </header>
 
-    <p>
-      Generate realistic AI search queries from a keyword or topic.
-    </p>
+    <main>
+      <section class="hero">
+        <span class="eyebrow">Free SEO GEO Tool</span>
+
+        <h1>AI Search Query Generator</h1>
+
+        <p class="hero-description">
+          Generate realistic questions and searches people may use in
+          ChatGPT, Google AI search, Perplexity, and other AI-powered
+          search experiences.
+        </p>
+      </section>
+
+      <section class="tool-card" aria-label="AI Search Query Generator">
+        <div class="field">
+          <label for="topic">Keyword or topic</label>
+
+          <p class="field-description">
+            Enter a keyword, product, service, problem, or topic.
+          </p>
+
+          <input
+            id="topic"
+            type="text"
+            placeholder="e.g. AI search optimization"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="controls">
+          <div class="field">
+            <label for="intent">Search intent</label>
+
+            <select id="intent">
+              <option value="all">All intents</option>
+              <option value="informational">Informational</option>
+              <option value="problem">Problem solving</option>
+              <option value="commercial">Commercial</option>
+              <option value="comparison">Comparison</option>
+              <option value="transactional">Transactional</option>
+              <option value="ai">AI search specific</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="quantity">Queries per category</label>
+
+            <select id="quantity">
+              <option value="5">5</option>
+              <option value="8" selected>8</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="generate" class="primary-button">
+            Generate Queries
+          </button>
+
+          <button id="clear" type="button">
+            Clear
+          </button>
+        </div>
+
+        <div id="empty-state" class="empty-state">
+          Enter a keyword or topic to generate queries.
+        </div>
+      </section>
+
+      <section
+        id="results"
+        class="results-section"
+        aria-live="polite"
+      >
+        <div class="results-header">
+          <h2>Generated queries</h2>
+          <span id="result-count" class="result-count"></span>
+        </div>
+
+        <div id="results-container"></div>
+
+        <div class="button-row">
+          <button id="copy-all">
+            Copy All Queries
+          </button>
+
+          <button id="regenerate" class="primary-button">
+            Generate Again
+          </button>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <h2>What is an AI Search Query Generator?</h2>
+
+        <p>
+          Traditional keyword research often starts with short search
+          terms. AI-powered search changes the way people express their
+          questions. Users can describe a problem, ask for comparisons,
+          provide context, or combine several requirements in a single
+          prompt.
+        </p>
+
+        <p>
+          This tool turns a topic into a broader set of natural-language
+          questions that can help with content research, search intent
+          analysis, topic discovery, and AI-search optimization.
+        </p>
+
+        <h3>Informational queries</h3>
+
+        <p>
+          These queries explore definitions, concepts, explanations,
+          fundamentals, and general information.
+        </p>
+
+        <h3>Problem-solving queries</h3>
+
+        <p>
+          These represent users who have a specific problem and want a
+          solution, process, explanation, or troubleshooting advice.
+        </p>
+
+        <h3>Commercial queries</h3>
+
+        <p>
+          These explore products, services, tools, providers, features,
+          pricing considerations, and purchasing criteria.
+        </p>
+
+        <h3>Comparison queries</h3>
+
+        <p>
+          These queries compare alternatives, approaches, products,
+          technologies, or strategies.
+        </p>
+
+        <h3>AI-search queries</h3>
+
+        <p>
+          These focus specifically on how a topic may appear in AI
+          answers, citations, recommendations, and generative search
+          experiences.
+        </p>
+
+        <div class="tip-box">
+          <p>
+            <strong>Tip:</strong> Use the generated queries as a starting
+            point for content research. Real search behavior varies by
+            audience, market, device, and context.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 SEO GEO · SEO, GEO & AI search strategies
+    </footer>
+
+    <script>
+      const queryTemplates = {
+        informational: [
+          "What is {topic}?",
+          "What does {topic} mean?",
+          "How does {topic} work?",
+          "Why is {topic} important?",
+          "What are the fundamentals of {topic}?",
+          "What should beginners know about {topic}?",
+          "What are the key concepts behind {topic}?",
+          "How has {topic} changed over time?",
+          "What are the main types of {topic}?",
+          "What are the benefits of {topic}?",
+          "What are the limitations of {topic}?",
+          "What are the most important things to know about {topic}?",
+          "How do experts approach {topic}?",
+          "What are common questions about {topic}?",
+          "Where can I learn more about {topic}?"
+        ],
+
+        problem: [
+          "How do I improve {topic}?",
+          "How can I get better results with {topic}?",
+          "Why is my {topic} not working?",
+          "What are the common problems with {topic}?",
+          "How do I fix problems with {topic}?",
+          "What are the most common mistakes with {topic}?",
+          "How can I troubleshoot {topic}?",
+          "Why is {topic} performing poorly?",
+          "How can I diagnose problems with {topic}?",
+          "What should I do if {topic} is not producing results?",
+          "How can I avoid common {topic} mistakes?",
+          "What is the best way to solve {topic} problems?",
+          "How do I optimize {topic} for better results?",
+          "What causes poor performance in {topic}?",
+          "How can I recover from a failed {topic} strategy?"
+        ],
+
+        commercial: [
+          "What are the best tools for {topic}?",
+          "What are the best services for {topic}?",
+          "What software can help with {topic}?",
+          "What should I look for in a {topic} tool?",
+          "How much does {topic} software cost?",
+          "Which companies offer solutions for {topic}?",
+          "What features should a {topic} tool have?",
+          "What are the most popular {topic} platforms?",
+          "How do I choose a {topic} service?",
+          "What should I consider before buying a {topic} solution?",
+          "Are there free tools for {topic}?",
+          "What are the alternatives to popular {topic} tools?",
+          "Which {topic} tools are suitable for small businesses?",
+          "Which {topic} tools are suitable for large businesses?",
+          "What should I compare when evaluating {topic} tools?"
+        ],
+
+        comparison: [
+          "{topic} vs traditional approaches: what's the difference?",
+          "What is the difference between {topic} and traditional methods?",
+          "What are the alternatives to {topic}?",
+          "Which approach is better for {topic}?",
+          "What are the pros and cons of {topic}?",
+          "How does {topic} compare with other approaches?",
+          "What are the main alternatives to {topic}?",
+          "When should I use {topic} instead of another approach?",
+          "What is better for beginners: {topic} or traditional methods?",
+          "What are the cost differences between {topic} and alternatives?",
+          "How does {topic} compare in terms of performance?",
+          "How does {topic} compare in terms of scalability?",
+          "What are the strengths and weaknesses of {topic}?",
+          "Is {topic} worth it compared with alternatives?",
+          "How should I choose between {topic} and its alternatives?"
+        ],
+
+        transactional: [
+          "How do I get started with {topic}?",
+          "Where can I buy {topic}?",
+          "Where can I get {topic}?",
+          "How do I sign up for a {topic} service?",
+          "What is the price of {topic}?",
+          "How much does {topic} cost?",
+          "What are the best places to get {topic}?",
+          "How do I choose the right {topic}?",
+          "What should I check before purchasing {topic}?",
+          "What are the available options for {topic}?",
+          "Which {topic} option should I choose?",
+          "What does a typical {topic} solution include?",
+          "Are there discounts for {topic}?",
+          "What are the most affordable {topic} options?",
+          "How can I get the best value from {topic}?"
+        ],
+
+        ai: [
+          "How do AI search engines find information about {topic}?",
+          "How does ChatGPT answer questions about {topic}?",
+          "How do AI search engines choose sources for {topic}?",
+          "How can a website get cited for {topic}?",
+          "What makes content about {topic} citation-worthy?",
+          "How can brands improve visibility for {topic} in AI answers?",
+          "How does generative search understand {topic}?",
+          "What factors influence AI visibility for {topic}?",
+          "How can I optimize content about {topic} for AI search?",
+          "How can I make a page more likely to be cited for {topic}?",
+          "What type of content do AI search engines use for {topic}?",
+          "How does entity recognition affect {topic} in AI search?",
+          "How important are citations for {topic} in AI answers?",
+          "How should I structure content about {topic} for AI search?",
+          "What signals help AI systems understand {topic}?"
+        ]
+      };
+
+      const categoryLabels = {
+        informational: "Informational",
+        problem: "Problem Solving",
+        commercial: "Commercial",
+        comparison: "Comparison",
+        transactional: "Transactional",
+        ai: "AI Search Specific"
+      };
+
+      const topicInput = document.getElementById("topic");
+      const intentSelect = document.getElementById("intent");
+      const quantitySelect = document.getElementById("quantity");
+
+      const generateButton = document.getElementById("generate");
+      const clearButton = document.getElementById("clear");
+      const copyAllButton = document.getElementById("copy-all");
+      const regenerateButton = document.getElementById("regenerate");
+
+      const resultsSection = document.getElementById("results");
+      const resultsContainer = document.getElementById("results-container");
+      const resultCount = document.getElementById("result-count");
+      const emptyState = document.getElementById("empty-state");
+
+      let generatedQueries = [];
+
+      function cleanTopic(topic) {
+        return topic
+          .trim()
+          .replace(/\s+/g, " ");
+      }
+
+      function createQuery(template, topic) {
+        return template.replaceAll("{topic}", topic);
+      }
+
+      function shuffle(array) {
+        const copy = [...array];
+
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+
+        return copy;
+      }
+
+      function getCategories(intent) {
+        if (intent === "all") {
+          return Object.keys(queryTemplates);
+        }
+
+        return [intent];
+      }
+
+      function generateQueries() {
+        const topic = cleanTopic(topicInput.value);
+
+        if (!topic) {
+          emptyState.style.display = "block";
+          resultsSection.classList.remove("visible");
+          topicInput.focus();
+          return;
+        }
+
+        emptyState.style.display = "none";
+
+        const quantity = Number(quantitySelect.value);
+        const intent = intentSelect.value;
+        const categories = getCategories(intent);
+
+        generatedQueries = [];
+
+        resultsContainer.innerHTML = "";
+
+        categories.forEach(category => {
+          const templates = shuffle(queryTemplates[category]);
+          const selected = templates.slice(0, quantity);
+
+          const queries = selected.map(template =>
+            createQuery(template, topic)
+          );
+
+          generatedQueries.push(
+            ...queries.map(query => ({
+              category,
+              query
+            }))
+          );
+
+          const categorySection = document.createElement("div");
+          categorySection.className = "category";
+
+          const categoryTitle = document.createElement("h3");
+          categoryTitle.className = "category-title";
+          categoryTitle.textContent = categoryLabels[category];
+
+          const list = document.createElement("ul");
+          list.className = "query-list";
+
+          queries.forEach(query => {
+            const item = document.createElement("li");
+            item.className = "query-item";
+
+            const text = document.createElement("span");
+            text.className = "query-text";
+            text.textContent = query;
+
+            const copyButton = document.createElement("button");
+            copyButton.className = "copy-button";
+            copyButton.type = "button";
+            copyButton.textContent = "Copy";
+            copyButton.setAttribute(
+              "aria-label",
+              `Copy query: ${query}`
+            );
+
+            copyButton.addEventListener("click", async () => {
+              await copyText(query);
+
+              copyButton.textContent = "Copied";
+              copyButton.classList.add("copied");
+
+              setTimeout(() => {
+                copyButton.textContent = "Copy";
+                copyButton.classList.remove("copied");
+              }, 1500);
+            });
+
+            item.appendChild(text);
+            item.appendChild(copyButton);
+            list.appendChild(item);
+          });
+
+          categorySection.appendChild(categoryTitle);
+          categorySection.appendChild(list);
+
+          resultsContainer.appendChild(categorySection);
+        });
+
+        resultCount.textContent =
+          `${generatedQueries.length} queries generated`;
+
+        resultsSection.classList.add("visible");
+
+        resultsSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      async function copyText(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const textarea = document.createElement("textarea");
+
+          textarea.value = text;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+
+          document.body.appendChild(textarea);
+
+          textarea.select();
+          document.execCommand("copy");
+
+          textarea.remove();
+        }
+      }
+
+      async function copyAll() {
+        if (!generatedQueries.length) {
+          return;
+        }
+
+        const text = generatedQueries
+          .map(item => item.query)
+          .join("\n");
+
+        await copyText(text);
+
+        const originalText = copyAllButton.textContent;
+
+        copyAllButton.textContent = "Copied All Queries";
+        copyAllButton.classList.add("copied");
+
+        setTimeout(() => {
+          copyAllButton.textContent = originalText;
+          copyAllButton.classList.remove("copied");
+        }, 1500);
+      }
+
+      function clearTool() {
+        topicInput.value = "";
+        intentSelect.value = "all";
+        quantitySelect.value = "8";
+
+        resultsContainer.innerHTML = "";
+        generatedQueries = [];
+
+        resultsSection.classList.remove("visible");
+        emptyState.style.display = "none";
+
+        topicInput.focus();
+      }
+
+      generateButton.addEventListener("click", generateQueries);
+      regenerateButton.addEventListener("click", generateQueries);
+      copyAllButton.addEventListener("click", copyAll);
+      clearButton.addEventListener("click", clearTool);
+
+      topicInput.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+          generateQueries();
+        }
+      });
+    </script>
   </body>
 </html>
