@@ -11,7 +11,7 @@ tags:
   - geo
   - technical-seo
   - ai-search
-description: "Snippet controls can affect how search engines use page content. SEOs should understand how nosnippet can limit content reuse and citation opportunities."
+description: "Snippet controls can affect how search engines use page content. SEOs should understand how nosnippet can limit content reuse and citation opportunities. Read on to know more."
 ---
 
 ## Table of contents
