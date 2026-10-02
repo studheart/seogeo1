@@ -15,9 +15,28 @@ import { SITE } from "./src/config";
 export default defineConfig({
   site: SITE.website,
   integrations: [
-    sitemap({
-      filter: page => SITE.showArchives || !page.endsWith("/archives"),
-    }),
+sitemap({
+  filter: (page) => {
+    const url = new URL(page);
+
+    // Exclude tag pages
+    if (url.pathname.startsWith("/tags/") || url.pathname === "/tags/") {
+      return false;
+    }
+
+    // Exclude paginated pages
+    if (/\/\d+\/$/.test(url.pathname)) {
+      return false;
+    }
+
+    // Exclude archives if disabled
+    if (!SITE.showArchives && url.pathname.endsWith("/archives/")) {
+      return false;
+    }
+
+    return true;
+  },
+}),
   ],
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
