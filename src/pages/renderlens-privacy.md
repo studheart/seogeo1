@@ -59,6 +59,10 @@ The extension does not intentionally share inspected HTML or rendered DOM conten
 
 The website being inspected may receive the extension's HTML request as described in the Network Requests section.
 
+### Chrome Web Store User Data Policy
+
+RenderLens's use and transfer of user data is intended to comply with the Chrome Web Store User Data Policy, including the Limited Use requirements. Information accessed by the extension is used only to provide its stated SEO inspection functionality and is handled as described in this policy.
+
 ### Data Security
 
 RenderLens limits its handling of inspection data to what is needed to provide its SEO analysis features. Since inspected content may be sensitive, users should exercise caution when inspecting private, authenticated, or confidential webpages.
@@ -75,4 +79,6 @@ This privacy policy may be updated when RenderLens changes or when clarification
 
 ### Contact
 
-For questions about this privacy policy or RenderLens, please contact the website owner through arunnathoffice [at] gmail [dot] com
+For questions about this privacy policy or RenderLens, contact:
+
+**Email:** [arunnath@live.in](mailto:arunnath@live.in)
