@@ -4,8 +4,6 @@ title: "Privacy Policy - RenderLens JavaScript SEO Inspector"
 description: "Privacy policy for RenderLens, a Chrome extension that compares initial HTML responses with JavaScript-rendered DOM content for technical SEO analysis."
 ---
 
-# Privacy Policy – RenderLens: JavaScript SEO Inspector
-
 **Last updated: October 9, 2026**
 
 RenderLens – JavaScript SEO Inspector is a browser extension designed to help SEO professionals, developers, and website owners identify differences between a webpage's initial HTML response and its JavaScript-rendered DOM.
