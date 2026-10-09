@@ -75,4 +75,4 @@ This privacy policy may be updated when RenderLens changes or when clarification
 
 ### Contact
 
-For questions about this privacy policy or RenderLens, please contact the website owner through [SEO GEO](https://seogeo.in/).
+For questions about this privacy policy or RenderLens, please contact the website owner through arunnathoffice [at] gmail [dot] com
